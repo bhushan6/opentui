@@ -24,6 +24,7 @@ import * as opentuiDemo from "./opentui-demo"
 import * as nestedZIndexDemo from "./nested-zindex-demo"
 import * as relativePositioningDemo from "./relative-positioning-demo"
 import * as transparencyDemo from "./transparency-demo"
+import * as scrollExample from "./scroll-example"
 import * as shaderCubeExample from "./shader-cube-demo"
 import * as spriteAnimationExample from "./sprite-animation-demo"
 import * as spriteParticleExample from "./sprite-particle-generator-demo"
@@ -171,6 +172,12 @@ const examples: Example[] = [
     destroy: textureLoadingExample.destroy,
   },
   {
+    name: "ScrollBox Demo",
+    description: "Scrollable container with customization",
+    run: scrollExample.run,
+    destroy: scrollExample.destroy,
+  },
+  {
     name: "Shader Cube",
     description: "3D cube with custom shaders",
     run: shaderCubeExample.run,
@@ -226,7 +233,7 @@ const examples: Example[] = [
   },
   {
     name: "VNode Composition Demo",
-    description: "Declarative Group(Group(Box(children))) composition",
+    description: "Declarative Box(Box(Box(children))) composition",
     run: vnodeCompositionDemo.run,
     destroy: vnodeCompositionDemo.destroy,
   },
@@ -260,7 +267,7 @@ class ExampleSelector {
     this.createStaticElements()
     this.createSelectElement()
     this.setupKeyboardHandling()
-    this.renderer.needsUpdate()
+    this.renderer.requestRender()
 
     this.renderer.on("resize", (width: number, height: number) => {
       this.handleResize(width, height)
@@ -382,7 +389,7 @@ class ExampleSelector {
       this.selectElement.height = height - 10
     }
 
-    this.renderer.needsUpdate()
+    this.renderer.requestRender()
   }
 
   private setupKeyboardHandling(): void {
@@ -429,7 +436,7 @@ class ExampleSelector {
         })
         this.renderer.root.add(this.notImplementedText)
       }
-      this.renderer.needsUpdate()
+      this.renderer.requestRender()
     }
   }
 
@@ -474,7 +481,7 @@ class ExampleSelector {
     this.renderer.pause()
     this.showMenuElements()
     this.renderer.setBackgroundColor("#001122")
-    this.renderer.needsUpdate()
+    this.renderer.requestRender()
   }
 
   private cleanup(): void {

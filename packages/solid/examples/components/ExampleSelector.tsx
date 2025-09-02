@@ -7,6 +7,7 @@ import MouseScene from "./mouse-demo.tsx"
 import TextStyleScene from "./text-style-demo.tsx"
 import TextSelectionDemo from "./text-selection-demo.tsx"
 import TabSelectDemo from "./tab-select-demo.tsx"
+import ExtendDemo from "./extend-demo.tsx"
 
 const EXAMPLES = [
   {
@@ -38,6 +39,11 @@ const EXAMPLES = [
     name: "Tab Select Demo",
     description: "Tab selection demo",
     scene: "tab-select-demo",
+  },
+  {
+    name: "Extend Demo",
+    description: "Extend demo",
+    scene: "extend-demo",
   },
 ]
 
@@ -109,9 +115,12 @@ const ExampleSelector = () => {
       <Match when={selectedScene() === "tab-select-demo"}>
         <TabSelectDemo />
       </Match>
+      <Match when={selectedScene() === "extend-demo"}>
+        <ExtendDemo />
+      </Match>
       <Match when={selected() === -1}>
         <box style={{ height: terminalDimensions().height, backgroundColor: "#001122", padding: 1 }}>
-          <group alignItems="center">
+          <box alignItems="center">
             <ascii_font
               style={{
                 width: titleWidth,
@@ -120,7 +129,7 @@ const ExampleSelector = () => {
               }}
               text={titleText}
             />
-          </group>
+          </box>
           <text style={{ fg: "#AAAAAA", marginTop: 1, marginLeft: 1, marginRight: 1 }}>
             Use ↑↓ or j/k to navigate, Shift+↑↓ or Shift+j/k for fast scroll, Enter to run, Escape to return, for
             console, ctrl+c to quit {selected()} {terminalDimensions().height}

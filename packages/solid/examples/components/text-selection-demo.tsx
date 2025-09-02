@@ -1,6 +1,6 @@
 import { bold, cyan, green, italic, magenta, Selection, yellow } from "@opentui/core"
 import { ConsolePosition } from "@opentui/core/src/console"
-import { render, useRenderer, useSelectionHandler, type TextStyle } from "@opentui/solid"
+import { render, useRenderer, useSelectionHandler, type TextProps } from "@opentui/solid"
 import { createEffect, createSignal, onMount, type Ref } from "solid-js"
 
 const words = ["Hello", "World", "OpenTUI", "SolidJS", "ReactJS", "TypeScript", "JavaScript", "CSS", "HTML", "JSX"]
@@ -22,7 +22,7 @@ export default function TextSelectionDemo() {
   const [selectionMiddleText, setSelectionMiddleText] = createSignal("")
   const [selectionEndText, setSelectionEndText] = createSignal("")
 
-  const section1TextStyle: TextStyle = {
+  const section1TextStyle: TextProps["style"] = {
     fg: "#f0f6fc",
     zIndex: 21,
   }
@@ -87,7 +87,7 @@ export default function TextSelectionDemo() {
         }}
         title="Text Selection Demo"
       >
-        <group
+        <box
           style={{
             position: "absolute",
             left: 3,
@@ -129,8 +129,8 @@ export default function TextSelectionDemo() {
               {yellow("Important:")} {bold(cyan("Nested content"))} {italic(green("with styles"))}
             </text>
           </box>
-        </group>
-        <group
+        </box>
+        <box
           style={{
             position: "absolute",
             left: 49,
@@ -167,7 +167,7 @@ export default function TextSelectionDemo() {
             </text>
             <text style={{ fg: "#e6edf3", zIndex: 21 }}>{"}"}</text>
           </box>
-        </group>
+        </box>
         <text style={{ left: 2, top: 17, zIndex: 2 }}>
           Click and drag to select text across any elements. Press 'C' to clear selection.
         </text>
@@ -192,7 +192,7 @@ export default function TextSelectionDemo() {
           {"\n"}
           {green("✓")} Cross-renderable selection
           {"\n"}
-          {green("✓")} Nested groups and boxes
+          {green("✓")} Nested boxes
           {"\n"}
           {green("✓")} Styled text support
         </text>
